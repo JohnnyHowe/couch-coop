@@ -1,9 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(APlayerInputController))]
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float speed = 1;
+    [SerializeField] private float runForce = 1;
     private APlayerInputController inputController;
     private new Rigidbody rigidbody;
 
@@ -16,7 +17,6 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Vector2 movement = inputController.GetMovement();
-        Debug.Log(movement);
-        rigidbody.velocity = new Vector3(movement.x, 0, movement.y) * speed;
+        rigidbody.AddForce(new Vector3(movement.x, 0, movement.y) * runForce);
     }
 }
